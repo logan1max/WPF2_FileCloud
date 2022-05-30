@@ -1,0 +1,17 @@
+﻿<Window x:Class="WPF2_FileCloud.UserWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF2_FileCloud"
+        mc:Ignorable="d"
+        Title="UserWindow" Height="450" Width="800">
+    <Grid>
+        <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+            <Label x:Name="UserLabel" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,6,0,0" FontSize="26"></Label>
+            <!--<Button x:Name="AddFileButton" FontSize="26" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Upload File" Click="AddFileButton_Click"/>-->
+            <Button x:Name="ViewFilesButton" FontSize="26" VerticalAlignment="Center" HorizontalAlignment="Center" Content="View Files" Click="ViewFilesButton_Click"></Button>
+            <Button x:Name="ExitButton" FontSize="26" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Exit" Click="ExitButton_Click"></Button>
+        </StackPanel>
+    </Grid>
+</Window>

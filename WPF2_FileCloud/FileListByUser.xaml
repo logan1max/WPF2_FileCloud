@@ -1,0 +1,24 @@
+﻿<Window x:Class="WPF2_FileCloud.FileListByUser"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF2_FileCloud"
+        mc:Ignorable="d"
+        Title="FileListByUser" Height="450" Width="800">
+
+    <Grid>
+        <Label x:Name="FileListLabel" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,6,0,0" FontSize="26"></Label>
+        <ListView x:Name="listViewFiles" Margin="0,60,0,58">
+            <GridView>
+
+            </GridView>
+        </ListView>
+        <WrapPanel Margin="0,376,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <Button x:Name="addFileButton" Margin="2"  FontSize="26" Content="Add File" VerticalAlignment="Center" HorizontalAlignment="Center" Click="addFileButton_Click"/>
+            <Button x:Name="deleteFileButton" Margin="2"  FontSize="26" Content="Delete File" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Button x:Name="updateFileButton" Margin="2"  FontSize="26" Content="Update List" VerticalAlignment="Center" HorizontalAlignment="Center" Click="updateFileButton_Click"/>
+
+        </WrapPanel>
+    </Grid>
+</Window>
