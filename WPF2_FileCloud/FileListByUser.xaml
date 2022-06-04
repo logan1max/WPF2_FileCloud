@@ -3,17 +3,48 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WPF2_FileCloud"
+        xmlns:local="clr-namespace:WPF2_FileCloud" 
+        d:DataContext="{d:DesignInstance Type=local:FileListByUserViewModel}"
         mc:Ignorable="d"
         Title="FileListByUser" Height="450" Width="800">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
         <Label x:Name="FileListLabel" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,6,0,0" FontSize="26"></Label>
-        <ListView x:Name="listViewFiles" Margin="0,60,0,58">
-            <GridView>
-
-            </GridView>
+        <ListView x:Name="listViewFiles" Margin="0,71,10,86">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="{Binding id_file}" VerticalAlignment="Center" Width="390"
+                                   HorizontalAlignment="Left"  Grid.Row="0"></TextBlock>
+                        <TextBlock Text="{Binding name}" Grid.Row="0" HorizontalAlignment="Center"></TextBlock>
+                        <TextBlock Text="{Binding source}" Grid.Row="0" HorizontalAlignment="Center"></TextBlock>
+                        <TextBlock Text="{Binding size}" Grid.Row="0" HorizontalAlignment="Center"></TextBlock>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
         </ListView>
+        
+        
+        
+        
+        <!--<ListView x:Name="listViewFiles" Margin="0,60,0,58" ItemsSource="{Binding FileList}">
+            <GridView>
+                <GridViewColumn DisplayMemberBinding="{Binding Path=id_file}">ID FIle</GridViewColumn>
+                <GridViewColumn DisplayMemberBinding="{Binding Path=name}" Width="100">FileName</GridViewColumn>
+                <GridViewColumn DisplayMemberBinding="{Binding Path=source}">FilePath</GridViewColumn>
+                <GridViewColumn DisplayMemberBinding="{Binding Path=size}">FileSize</GridViewColumn>
+            </GridView>
+        </ListView>-->
         <WrapPanel Margin="0,376,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
             <Button x:Name="addFileButton" Margin="2"  FontSize="26" Content="Add File" VerticalAlignment="Center" HorizontalAlignment="Center" Click="addFileButton_Click"/>
             <Button x:Name="deleteFileButton" Margin="2"  FontSize="26" Content="Delete File" VerticalAlignment="Center" HorizontalAlignment="Center"/>

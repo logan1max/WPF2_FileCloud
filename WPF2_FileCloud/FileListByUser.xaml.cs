@@ -1,6 +1,8 @@
 ﻿using Microsoft.Win32;
+using NuGet.Common;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
@@ -25,33 +27,45 @@ namespace WPF2_FileCloud
     {
         private string userLogin;
 
-        public List<Files> filesList = new List<Files>();
+        public ObservableCollection<Files> filesList;
 
-        public FileListByUser(string _login)
+        public FileListByUser(string login)
         {
-            userLogin = _login;
+            userLogin = login;
 
             InitializeComponent();
 
+          //  DataContext = new FileListByUserViewModel(login);
+
             FileListLabel.Content = "User: " + userLogin;
 
-            ListViewUpdateAsync();            
+            //     CreateAsync(login);
+            ListViewUpdateAsync();
+            listViewFiles.Items.Refresh();
+            
+
+     //       listViewFiles.ItemsSource = filesList;
         }
 
-        private async Task<List<Files>> ListViewUpdateAsync()
+        private static Task CreateAsync(string login)
+        {
+            var ret = new FileListByUser(login);
+            return ret.ListViewUpdateAsync();
+        }
+
+        public async Task<List<Files>> ListViewUpdateAsync()
         {
             using (HttpClient client = new HttpClient())
             {
-
                 var response = await client.GetFromJsonAsync<List<Files>>("https://localhost:44342/api/Files/" + userLogin);
 
-                filesList = response;
+                filesList = new ObservableCollection<Files>(response);
+
+                listViewFiles.ItemsSource = filesList;
 
                 return response;
-
             }
         }
-
 
         private void AddFilesToListView()
         {
@@ -79,7 +93,10 @@ namespace WPF2_FileCloud
                 };
 
                 addFileToDbAsync(addFile);
+                ListViewUpdateAsync();
+                listViewFiles.Items.Refresh();
             }
+
         }
 
         private async Task addFileToDbAsync(AddFileToUser addFile)
@@ -103,7 +120,8 @@ namespace WPF2_FileCloud
 
         private void updateFileButton_Click(object sender, RoutedEventArgs e)
         {
-
+            ListViewUpdateAsync();
+            listViewFiles.Items.Refresh();
         }
     }
 }
